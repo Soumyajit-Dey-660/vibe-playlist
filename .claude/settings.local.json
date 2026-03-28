@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(./backend/node_modules/.bin/prettier --single-quote --trailing-comma all --tab-width 4 --write backend/src/**/*.ts backend/test/**/*.ts frontend/src/**/*.ts frontend/src/**/*.tsx frontend/vite.config.ts)",
+      "Bash(./backend/node_modules/.bin/prettier --single-quote --trailing-comma all --tab-width 4 --write --parser typescript \"backend/src\" \"backend/test\" \"frontend/src\" \"frontend/vite.config.ts\")",
+      "Bash(npx prettier:*)"
+    ]
+  }
+}
