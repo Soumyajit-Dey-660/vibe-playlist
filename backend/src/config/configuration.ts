@@ -4,7 +4,5 @@ export default registerAs('app', () => ({
   port: parseInt(process.env.PORT ?? '3001', 10) || 3001,
   openaiApiKey: process.env.OPENAI_API_KEY,
   openaiModel: process.env.OPENAI_MODEL || 'gpt-4o',
-  spotifyClientId: process.env.SPOTIFY_CLIENT_ID,
-  spotifyClientSecret: process.env.SPOTIFY_CLIENT_SECRET,
   corsOrigin: process.env.CORS_ORIGIN || 'http://localhost:5173',
 }));

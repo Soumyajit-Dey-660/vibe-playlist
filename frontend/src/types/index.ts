@@ -1,14 +1,13 @@
-export interface SpotifyTrack {
+export interface Track {
   id: string;
   name: string;
   artist: string;
   artists: string[];
   album: string;
   albumArtUrl: string;
-  spotifyUrl: string;
+  trackUrl: string;
   previewUrl: string | null;
   durationMs: number;
-  popularity: number;
 }
 
 export interface MoodResult {
@@ -22,7 +21,7 @@ export interface MoodResult {
 
 export interface PlaylistResponse {
   mood: MoodResult;
-  tracks: SpotifyTrack[];
+  tracks: Track[];
   generatedAt: string;
 }
 

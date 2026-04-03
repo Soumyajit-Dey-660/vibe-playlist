@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import type { SpotifyTrack } from '../../types';
+import type { Track } from '../../types';
 import './TrackCard.css';
 
 function formatDuration(ms: number): string {
@@ -10,7 +10,7 @@ function formatDuration(ms: number): string {
 }
 
 interface TrackCardProps {
-  track: SpotifyTrack;
+  track: Track;
   index: number;
 }
 
@@ -74,11 +74,11 @@ export function TrackCard({ track, index }: TrackCardProps) {
           {formatDuration(track.durationMs)}
         </span>
         <a
-          href={track.spotifyUrl}
+          href={track.trackUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="spotify-link"
-          title="Open in Spotify"
+          title="Open in Apple Music"
         >
           ↗
         </a>

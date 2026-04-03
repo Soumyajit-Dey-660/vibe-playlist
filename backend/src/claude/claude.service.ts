@@ -18,13 +18,13 @@ STEP 2 — Read the drawing's emotional signal using these cues:
   - SPATIAL USE: fills the whole canvas = expansive/extroverted; huddled in corner = withdrawn/introverted
   - STRUCTURE: rigid geometry = controlled; loose organic forms = emotional/expressive; spirals = introspective; spikes/zigzags = agitated
 
-STEP 3 — Map to music using Spotify-friendly search terms.
+STEP 3 — Map to music using iTunes-friendly search terms.
 
-CRITICAL RULES for searchTerms — these are passed directly to the Spotify search API, so they MUST return real results:
-  - Use GENRE NAMES that Spotify recognizes: "dark ambient", "post-rock", "lo-fi hip hop", "heavy metal", "cinematic orchestral", "industrial electronic", "doom metal", "neo-soul", "shoegaze", "trap"
+CRITICAL RULES for searchTerms — these are passed directly to the iTunes Search API, so they MUST return real results:
+  - Use GENRE NAMES that iTunes recognizes: "dark ambient", "post-rock", "lo-fi hip hop", "heavy metal", "cinematic orchestral", "industrial electronic", "doom metal", "neo-soul", "shoegaze", "trap"
   - Use MOOD + GENRE combos: "intense dark electronic", "melancholic post-rock", "aggressive metal", "calm acoustic", "epic orchestral"
-  - Use ARTIST-STYLE descriptors: "Massive Attack style", "Nine Inch Nails type", "Hans Zimmer cinematic"
-  - NEVER use abstract poetic phrases ("electric storm energy", "liquid midnight"), metaphors, or invented labels as search terms — Spotify won't find anything
+  - Use well-known ARTIST NAMES whose music matches the mood: "Massive Attack", "Nine Inch Nails", "Hans Zimmer", "Explosions in the Sky"
+  - NEVER use abstract poetic phrases ("electric storm energy", "liquid midnight"), metaphors, or invented labels as search terms — iTunes won't find anything
   - For high-energy dark moods (storms, chaos): prefer "heavy metal", "industrial", "dark techno", "hard rock", "aggressive electronic"
   - For calm moods: prefer "ambient", "lo-fi", "acoustic", "chillout", "meditation"
 
@@ -33,8 +33,8 @@ Return ONLY valid JSON — no markdown, no explanation:
   "moodLabel": "exactly ONE word — either what was drawn or the dominant mood (e.g. 'Thunder', 'Rain', 'Rage', 'Drift', 'Bliss', 'Chaos')",
   "subject": "What appears to be drawn, or 'abstract' if unrecognizable",
   "interpretation": "2-3 sentences: what the drawing communicates emotionally and why",
-  "genres": ["3-5 specific Spotify genre strings, e.g. 'lo-fi hip hop', 'post-punk', 'dark ambient', 'bedroom pop'"],
-  "searchTerms": ["6-8 concrete Spotify search queries that WILL return results, e.g. 'dark ambient', 'aggressive heavy metal', 'melancholic post-rock', 'Nine Inch Nails', 'intense cinematic orchestral'"],
+  "genres": ["3-5 specific genre strings, e.g. 'lo-fi hip hop', 'post-punk', 'dark ambient', 'bedroom pop'"],
+  "searchTerms": ["6-8 concrete iTunes search queries that WILL return results, e.g. 'dark ambient', 'aggressive heavy metal', 'melancholic post-rock', 'Nine Inch Nails', 'intense cinematic orchestral'"],
   "energy": "low | medium | high",
   "valence": "dark | neutral | bright",
   "tempo": "slow | medium | fast"

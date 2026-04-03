@@ -1,13 +1,13 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { ClaudeService } from '../claude/claude.service';
-import { SpotifyService } from '../spotify/spotify.service';
+import { ItunesService } from '../itunes/itunes.service';
 import { GeneratePlaylistDto } from './dto/generate-playlist.dto';
-import { SpotifyTrack } from '../spotify/interfaces/spotify-track.interface';
+import { Track } from '../itunes/interfaces/itunes-track.interface';
 import { MoodAnalysis } from '../claude/interfaces/mood-analysis.interface';
 
 export interface PlaylistResponse {
   mood: Omit<MoodAnalysis, 'searchTerms'>;
-  tracks: SpotifyTrack[];
+  tracks: Track[];
   generatedAt: string;
 }
 
@@ -17,7 +17,7 @@ export class PlaylistService {
 
   constructor(
     private readonly claudeService: ClaudeService,
-    private readonly spotifyService: SpotifyService,
+    private readonly itunesService: ItunesService,
   ) {}
 
   async generate(dto: GeneratePlaylistDto): Promise<PlaylistResponse> {
@@ -29,27 +29,27 @@ export class PlaylistService {
       `Mood: ${mood.moodLabel} | Search terms: ${mood.searchTerms.join(', ')}`,
     );
 
-    // Step 2: Search Spotify — searchTerms first, then fall back to genres if needed
+    // Step 2: Search iTunes — searchTerms first, then fall back to genres if needed
     const searchTrack = (term: string, limit: number) =>
-      this.spotifyService.searchTracks(term, limit).catch((err) => {
+      this.itunesService.searchTracks(term, limit).catch((err) => {
         this.logger.warn(
           `Search failed for "${term}": ${(err as Error).message}`,
         );
-        return [] as SpotifyTrack[];
+        return [] as Track[];
       });
 
     const tracksPerQuery = Math.ceil(targetCount / mood.searchTerms.length) + 2;
     const primaryResults = await Promise.all(
       mood.searchTerms.map(async (term) => {
         const results = await searchTrack(term, tracksPerQuery);
-        this.logger.log(`  [spotify] "${term}" → ${results.length} tracks`);
+        this.logger.log(`  [itunes] "${term}" → ${results.length} tracks`);
         return results;
       }),
     );
 
-    const dedup = (batches: SpotifyTrack[][]): SpotifyTrack[] => {
+    const dedup = (batches: Track[][]): Track[] => {
       const seen = new Set<string>();
-      const out: SpotifyTrack[] = [];
+      const out: Track[] = [];
       for (const batch of batches) {
         for (const track of batch) {
           if (!seen.has(track.id)) {
@@ -73,7 +73,7 @@ export class PlaylistService {
         mood.genres.map(async (g) => {
           const results = await searchTrack(g, tracksPerQuery);
           this.logger.log(
-            `  [spotify genre] "${g}" → ${results.length} tracks`,
+            `  [itunes genre] "${g}" → ${results.length} tracks`,
           );
           return results;
         }),
